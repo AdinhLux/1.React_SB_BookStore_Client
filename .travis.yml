@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - 14.17.6
+script:
+  - "npm run build"
+  - "npm run test:nowatch"
+
+# Config to deploy our app to Heroku (you must generate token from Heroku CLI and copy paste it to Travis website)
+# 'adinh-book-demo-store-web' is the name of th app defined on Heroku website
+deploy:
+  provider: heroku
+  api_key: $HEROKU_TOKEN_WEB
+  app: "adinh-book-demo-store-web"
+  on:
+    all_branches: true
