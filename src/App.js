@@ -1,25 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+// We need to import React to make this const a component
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Creating a dummy component
+const App = () => {
+    return <div>My first component</div>;
 }
 
+// Export to outside as 'App'
 export default App;
