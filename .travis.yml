@@ -9,9 +9,7 @@ script:
 # 'adinh-book-demo-store-web' is the name of th app defined on Heroku website
 deploy:
   provider: heroku
-  api_key: 
-    secure: $HEROKU_TOKEN
+  api_key: $HEROKU_TOKEN_WEB
   app: "adinh-book-demo-store-web"
-  skip_cleanup: true
   on:
     all_branches: true
