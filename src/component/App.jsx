@@ -2,7 +2,7 @@
 import React from 'react';
 
 import axios from 'axios';
-import baseUrl from './config'
+import baseUrl from '../config'
 
 // Creating a dummy component
 const App = () => {
