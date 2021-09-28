@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 // Import your component for testing
-import App from "./App";
+import App from "../App";
 
 describe("App component", () => {
   it("should render app with error", () => {
