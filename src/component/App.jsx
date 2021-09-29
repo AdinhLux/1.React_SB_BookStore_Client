@@ -5,6 +5,7 @@ import axios from "axios";
 import baseUrl from "../config";
 
 import Layout from "./layout/Layout";
+import BookContainer from "./book/BookContainer";
 
 // Creating a dummy component
 const App = () => {
@@ -13,9 +14,10 @@ const App = () => {
     console.log(books);
   });
 
+  // This container pass the layout at children and it will going to render it here, below the Header
   return (
     <Layout>
-      <div>My first component</div>
+      <BookContainer />
     </Layout>
   );
 };
