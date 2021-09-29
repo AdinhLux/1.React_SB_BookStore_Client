@@ -1,12 +1,15 @@
 import { Box } from "@material-ui/core";
 import React from "react";
 import BookFilter from "./BookFilter";
+import styles from "./BookStyles";
 
 const BookContainer = () => {
+  // Instantiate BookStyles
+  const classes = styles();
   return (
-    <Box>
+    <Box className={classes.bookContainer}>
       <BookFilter />
-      <Box>Here we will display all books.</Box>
+      <Box className={classes.bookList}>Here we will display all books.</Box>
     </Box>
   );
 };
