@@ -22,5 +22,5 @@ const App = () => {
   );
 };
 
-// Export to outside as 'App'
+// Export to outside as 'App' to the main file index.jsx
 export default App;
