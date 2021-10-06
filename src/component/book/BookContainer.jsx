@@ -1,7 +1,7 @@
 import { Box } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import getBooksAction from "../../module/book/bookAction";
-import React from "react";
+import React, { useEffect } from "react";
 import { getBooksSelector } from "../../module/book/bookSelector";
 import BookFilter from "./BookFilter";
 import styles from "./BookStyles";
@@ -17,7 +17,17 @@ const BookContainer = () => {
   const dispatch = useDispatch();
 
   // With the Dispatch, we are making an API call to the server
-  dispatch(getBooksAction());
+  /**
+   * At the time of rendering we again dispatch getBooksAction, leading to an infinite loop of API calls
+   * We will dispatch data ONCE, using useEffect.
+   *
+   * 1st argument is a function, 2nd is a dependency
+   * 
+   * When 'dispatch' is changed, it will call useEffect. So it is going to call at one time
+   */
+  useEffect(() => {
+    dispatch(getBooksAction());
+  }, [dispatch]);
 
   /**
    * When data is stored in the store, immediately the Selector is notified that data has been updated.
