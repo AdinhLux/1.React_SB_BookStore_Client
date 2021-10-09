@@ -7,7 +7,6 @@ import baseUrl from "../config";
 import Layout from "./layout/Layout";
 import BookContainer from "./book/BookContainer";
 
-// Creating a dummy component
 const App = () => {
   // Endpoint of Book to get all books
   axios(`${baseUrl}/api/v1/books`).then((books) => {
