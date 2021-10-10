@@ -17,13 +17,15 @@ describe("bookReducer test", () => {
     const newState = bookReducer(INITIAL_BOOK_REDUCER_STATE, action);
 
     // Asserting new state
-    expect(newState).toEqual([
-      {
-        id: 1,
-        title: "test title",
-        description: "test description",
-        releaseYear: 2018,
-      },
-    ]);
+    expect(newState).toEqual({
+      books: [
+        {
+          id: 1,
+          title: "test title",
+          description: "test description",
+          releaseYear: 2018,
+        },
+      ],
+    });
   });
 });
