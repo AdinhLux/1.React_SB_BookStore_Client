@@ -31,7 +31,7 @@ const BookContainer = () => {
 
   /**
    * When data is stored in the store, immediately the Selector is notified that data has been updated.
-   * So, Book container is renederd with new data.
+   * So, Book container is rendered with new data.
    */
   const books = useSelector(getBooksSelector);
   console.log("Book Container useSelector books: ", books);
