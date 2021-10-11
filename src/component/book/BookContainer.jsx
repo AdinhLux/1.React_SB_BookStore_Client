@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { getBooksSelector } from "../../module/book/bookSelector";
 import BookFilter from "./BookFilter";
 import styles from "./BookStyles";
+import BookList from "./BookList";
 
 const BookContainer = () => {
   /**
@@ -22,7 +23,7 @@ const BookContainer = () => {
    * We will dispatch data ONCE, using useEffect.
    *
    * 1st argument is a function, 2nd is a dependency
-   * 
+   *
    * When 'dispatch' is changed, it will call useEffect. So it is going to call at one time
    */
   useEffect(() => {
@@ -41,7 +42,9 @@ const BookContainer = () => {
   return (
     <Box className={classes.bookContainer}>
       <BookFilter />
-      <Box className={classes.bookList}>Here we will display all books.</Box>
+      <Box className={classes.bookList}>
+        <BookList books={books} />
+      </Box>
     </Box>
   );
 };
