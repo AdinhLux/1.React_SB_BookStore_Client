@@ -7,12 +7,14 @@ import styles from "./BookStyles";
  * In this component we will receive books as props, so let's define the props type
  */
 const propTypes = {
-  books: Proptypes.arrayOf({
-    id: Proptypes.string.isRequired,
-    title: Proptypes.string.isRequired,
-    description: Proptypes.string.isRequired,
-    releaseYear: Proptypes.number.isRequired,
-  }).isRequired,
+  books: Proptypes.arrayOf(
+    Proptypes.shape({
+      id: Proptypes.string.isRequired,
+      title: Proptypes.string.isRequired,
+      description: Proptypes.string.isRequired,
+      releaseYear: Proptypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 const BookList = ({ books }) => {
