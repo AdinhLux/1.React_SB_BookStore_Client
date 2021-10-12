@@ -21,13 +21,15 @@ const BookListItem = ({ book }) => {
   const classes = makeStyles();
 
   return (
-    <Box>
-      <Paper>
-        <Avatar variant="square">{book.title}</Avatar>
-        <Box>
+    <Box mb={2}>
+      <Paper elevation={2} className={classes.bookListItemPaper}>
+        <Avatar className={classes.bookImage} variant="square">
+          {book.title}
+        </Avatar>
+        <Box ml={2}>
           <Typography variant="h5">{book.title}</Typography>
-          <Typography variant="h5">{book.description}</Typography>
-          <Typography variant="h5">{book.releaseYear}</Typography>
+          <Typography>{book.description}</Typography>
+          <Typography>{book.releaseYear}</Typography>
         </Box>
       </Paper>
     </Box>

@@ -19,7 +19,7 @@ const propTypes = {
 const BookList = ({ books }) => {
   const classes = styles();
   return (
-    <Box className={classes.bookList}>
+    <Box className={classes.bookList} ml={5}>
       {books.map((book) => (
         <BookListItem book={book} key={book.id} />
       ))}
