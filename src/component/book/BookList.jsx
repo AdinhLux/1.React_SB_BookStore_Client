@@ -1,7 +1,8 @@
 import React from "react";
 import Proptypes from "prop-types";
 import { Box } from "@material-ui/core";
-import styles from "./BookStyles";
+import makeStyles from "./BookStyles";
+import BookListItem from "./BookListItem";
 
 /*
  * In this component we will receive books as props, so let's define the props type
@@ -18,11 +19,11 @@ const propTypes = {
 };
 
 const BookList = ({ books }) => {
-  const classes = styles();
+  const classes = makeStyles();
   return (
-    <Box className={classes.bookList}>
+    <Box className={classes.bookList} ml={5}>
       {books.map((book) => (
-        <div key={book.id}>{book.id}</div>
+        <BookListItem book={book} key={book.id} />
       ))}
     </Box>
   );
