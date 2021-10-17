@@ -26,6 +26,12 @@ describe("bookReducer test", () => {
           releaseYear: 2018,
         },
       ],
+
+      promise: {
+        isPending: true,
+        isFulfilled: false,
+        isErrorOccured: false,
+      },
     });
   });
 });
