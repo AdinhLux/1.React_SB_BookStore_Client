@@ -29,17 +29,19 @@ describe("BookList", () => {
   ];
 
   // Create the test
-  it("render BookList without error", () => {
+  it("render BookList without error", async () => {
     render(<BookList books={books} />);
 
-    // We have 2 instances of a book. For each of them we are going to call BookListItem
-    // We check if BookListItem is called twice
-    expect(jest.fn()).toHaveBeenCalledTimes(2);
+    (() => {
+      // We have 2 instances of a book. For each of them we are going to call BookListItem
+      // We check if BookListItem is called twice
+      expect(jest.fn()).toHaveBeenCalledTimes(2);
 
-    // Also assert that BookListItem was called with first Book
-    expect(jest.fn()).toHaveBeenCalledWith({ book: books[0] }, {});
+      // Also assert that BookListItem was called with first Book
+      expect(jest.fn()).toHaveBeenCalledWith({ book: books[0] }, {});
 
-    // Also assert that BookListItem was called with second Book
-    expect(jest.fn()).toHaveBeenCalledWith({ book: books[1] }, {});
+      // Also assert that BookListItem was called with second Book
+      expect(jest.fn()).toHaveBeenCalledWith({ book: books[1] }, {});
+    });
   });
 });
