@@ -1,7 +1,6 @@
 import React from "react";
 import renderWithRedux from "../../../util/testUtil";
 import BookContainer from "../BookContainer";
-import BookList from "../BookList";
 
 /*
  * We need to mock the part of BookList because we don't want to render the actual booklist component.

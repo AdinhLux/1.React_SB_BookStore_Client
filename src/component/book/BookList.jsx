@@ -1,23 +1,25 @@
 import React from "react";
 import Proptypes from "prop-types";
 import { Box } from "@material-ui/core";
-import styles from "./BookStyles";
+import makeStyles from "./BookStyles";
 import BookListItem from "./BookListItem";
 
 /*
  * In this component we will receive books as props, so let's define the props type
  */
 const propTypes = {
-  books: Proptypes.arrayOf({
-    id: Proptypes.string.isRequired,
-    title: Proptypes.string.isRequired,
-    description: Proptypes.string.isRequired,
-    releaseYear: Proptypes.number.isRequired,
-  }).isRequired,
+  books: Proptypes.arrayOf(
+    Proptypes.shape({
+      id: Proptypes.string.isRequired,
+      title: Proptypes.string.isRequired,
+      description: Proptypes.string.isRequired,
+      releaseYear: Proptypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 const BookList = ({ books }) => {
-  const classes = styles();
+  const classes = makeStyles();
   return (
     <Box className={classes.bookList} ml={5}>
       {books.map((book) => (
