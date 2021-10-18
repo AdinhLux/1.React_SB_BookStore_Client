@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import getBooksAction from "../../module/book/bookAction";
+import { getBooksAction } from "../../module/book/bookAction";
 import React, { useEffect } from "react";
 import {
   getBooksSelector,
@@ -66,7 +66,7 @@ const BookContainer = () => {
         {
           // Display error message
           bookPromise.isErrorOccured && (
-            <div data-testid="book-error-message"> Error message ... </div>
+            <div data-testid="book-error-messsage"> Error message ... </div>
           )
         }
         {

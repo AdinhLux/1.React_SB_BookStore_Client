@@ -1,30 +1,41 @@
 import React from "react";
 import renderWithRedux from "../../../util/testUtil";
 import BookContainer from "../BookContainer";
-import getBooksAction from "../../../module/book/bookAction";
+import BookList from "../BookList";
+import { getBooksAction } from "../../../module/book/bookAction";
 
 /*
  * We need to mock the part of BookList because we don't want to render the actual booklist component.
  * We just want to check if BookList component is called with the desired list of books or not in our test (1/2)
  */
-jest.mock("../BookList", () => () => <div>mock Booklist component</div>);
+
+// Mocking component
+jest.mock("../BookList");
+// jest.mock("../BookList", () => jest.fn());
+
+// Mocking methods
+jest.mock("../../../module/book/bookAction");
+// jest.mock("../../../module/book/bookAction", () => ({
+//   getBooksAction: jest.fn(),
+// }));
 
 describe("BookContainer", () => {
   /*
    * We need to provide the fake implementation
    * Mock implementation is used to provide the fake implementations of components or any other functions
    * This implementation asserts the function better returns the desired output for the BookList component (2/2)
-   *
-   * UPDATE : in recent versions, ignore these 3 lines
    */
-  //  beforeAll(() => {
-  //    BookList.mockImplementation(() => <div>mock booklist comp</div>);
-  //  });
 
-  it("should render without error", async () => {
+  // Mocking component in all cases
+
+  beforeAll(() => {
+    BookList.mockImplementation(() => <div>mock booklist comp</div>);
+  });
+
+  it("should render without error", () => {
     const books = [
       {
-        id: "1",
+        id: 1,
         title: "test title",
         description: "desc",
         releaseYear: 2019,
@@ -32,22 +43,22 @@ describe("BookContainer", () => {
     ];
 
     // Mocking actions
-    jest.mock("../../../module/book/bookAction", () => ({
-      type: "BOOKLIST",
-      payload: books.data,
-    }));
+    getBooksAction.mockImplementation(() => (dispatch) => {
+      dispatch({
+        type: "BOOKLIST",
+        payload: books,
+      });
+      dispatch({ type: "BOOKLISTFULFILLED" });
+    });
 
     renderWithRedux(<BookContainer />, {});
-
-    () => {
-      expect(jest.fn()).toHaveBeenCalledWith({ books }, {});
-    };
+    expect(BookList).toHaveBeenCalledWith({ books }, {});
   });
 
   // Test case for Loader
   it("should show Loader when pending is TRUE", () => {
     // Mocking actions
-    jest.mock("../../../module/book/bookAction", () => ({
+    getBooksAction.mockImplementation(() => ({
       type: "BOOKLISTPENDING",
     }));
 
@@ -60,12 +71,11 @@ describe("BookContainer", () => {
   // Test case for error
   it("should show Error message when error occured", () => {
     // Mocking actions
-    jest.mock("../../../module/book/bookAction", () => ({
+    getBooksAction.mockImplementation(() => ({
       type: "BOOKLISTERROR",
     }));
 
     const { getByTestId } = renderWithRedux(<BookContainer />, {});
-
-    expect(getByTestId("book-error-message")).toBeInTheDocument();
+    expect(getByTestId("book-error-messsage")).toBeInTheDocument();
   });
 });

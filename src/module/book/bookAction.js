@@ -1,7 +1,7 @@
 import getBooksService from "./bookService";
 
 // Calling Book Service
-const getBooksAction = () => async (dispatch) => {
+export const getBooksAction = () => async (dispatch) => {
   try {
     // Loading Data
     dispatch({
