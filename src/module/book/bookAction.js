@@ -30,5 +30,3 @@ export const getBooksAction = () => async (dispatch) => {
     });
   }
 };
-
-export default getBooksAction;

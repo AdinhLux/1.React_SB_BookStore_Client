@@ -10,14 +10,12 @@ import { getBooksAction } from "../../../module/book/bookAction";
  */
 
 // Mocking component
-jest.mock("../BookList");
-// jest.mock("../BookList", () => jest.fn());
+jest.mock("../BookList", () => jest.fn());
 
 // Mocking methods
-jest.mock("../../../module/book/bookAction");
-// jest.mock("../../../module/book/bookAction", () => ({
-//   getBooksAction: jest.fn(),
-// }));
+jest.mock("../../../module/book/bookAction", () => ({
+  getBooksAction: jest.fn(),
+}));
 
 describe("BookContainer", () => {
   /*
@@ -28,16 +26,18 @@ describe("BookContainer", () => {
 
   // Mocking component in all cases
 
-  beforeAll(() => {
-    BookList.mockImplementation(() => <div>mock booklist comp</div>);
-  });
+  //  beforeAll(() => {
+  //  });
 
   it("should render without error", () => {
+    // Mocking component
+    BookList.mockImplementation(() => <div>mock booklist comp</div>);
+
     const books = [
       {
         id: 1,
-        title: "test title",
-        description: "desc",
+        title: 'test title',
+        description: 'desc',
         releaseYear: 2019,
       },
     ];
