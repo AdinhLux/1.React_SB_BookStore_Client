@@ -54,7 +54,7 @@ const bookReducer = (state = INITIAL_BOOK_REDUCER_STATE, action) => {
       };
     }
 
-    case "BOOKLISTFULLFILLED": {
+    case "BOOKLISTFULFILLED": {
       return {
         ...state,
         promise: {

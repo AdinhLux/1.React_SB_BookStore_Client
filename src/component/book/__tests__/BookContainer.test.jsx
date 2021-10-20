@@ -30,17 +30,17 @@ describe("BookContainer", () => {
   //  });
 
   it("should render without error", () => {
-    // Mocking component
-    BookList.mockImplementation(() => <div>mock booklist comp</div>);
-
     const books = [
       {
         id: 1,
-        title: 'test title',
-        description: 'desc',
+        title: "test title",
+        description: "desc",
         releaseYear: 2019,
       },
     ];
+
+    // Mocking component
+    BookList.mockImplementation(() => <div>mock booklist comp</div>);
 
     // Mocking actions
     getBooksAction.mockImplementation(() => (dispatch) => {
@@ -52,7 +52,9 @@ describe("BookContainer", () => {
     });
 
     renderWithRedux(<BookContainer />, {});
-    expect(BookList).toHaveBeenCalledWith({ books }, {});
+
+    // Asserting BookList was called (was correctly mocked) in BookContainer
+    expect(BookList).toHaveBeenLastCalledWith({ books }, {});
   });
 
   // Test case for Loader

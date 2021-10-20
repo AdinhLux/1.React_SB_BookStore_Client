@@ -19,7 +19,7 @@ export const getBooksAction = () => async (dispatch) => {
 
     // When finishing to load all data
     dispatch({
-      type: "BOOKLISTFULLFILLED",
+      type: "BOOKLISTFULFILLED",
     });
   } catch (error) {
     console.log(error);
