@@ -1,13 +1,18 @@
 import { Box } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import getBooksAction from "../../module/book/bookAction";
+import { getBooksAction } from "../../module/book/bookAction";
 import React, { useEffect } from "react";
-import { getBooksSelector } from "../../module/book/bookSelector";
+import {
+  getBooksSelector,
+  getBookPromiseSelector,
+} from "../../module/book/bookSelector";
 import BookFilter from "./BookFilter";
 import styles from "./BookStyles";
 import BookList from "./BookList";
+import { Skeleton } from "@material-ui/lab";
 
 const BookContainer = () => {
+  console.log("called");
   /**
    * React's Hook gives the ability to use local component state, execute side effects, and more.
    *
@@ -35,6 +40,8 @@ const BookContainer = () => {
    * So, Book container is rendered with new data.
    */
   const books = useSelector(getBooksSelector);
+  const bookPromise = useSelector(getBookPromiseSelector);
+
   console.log("Book Container useSelector books: ", books);
 
   // Instantiate BookStyles
@@ -43,7 +50,30 @@ const BookContainer = () => {
     <Box className={classes.bookContainer}>
       <BookFilter />
       <Box className={classes.bookList}>
-        <BookList books={books} />
+        {
+          // Le's display Loader
+          bookPromise.isPending && (
+            <Box ml={5}>
+              <Skeleton
+                data-testid="book-loader"
+                variant="rect"
+                animation="pulse"
+                width="80%"
+                height={200}
+              />
+            </Box>
+          )
+        }
+        {
+          // Display error message
+          bookPromise.isErrorOccured && (
+            <div data-testid="book-error-messsage"> Error message ... </div>
+          )
+        }
+        {
+          // Display Data
+          bookPromise.isFulfilled && <BookList books={books} />
+        }
       </Box>
     </Box>
   );

@@ -1,16 +1,16 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import BookList from "../BookList";
-// import BookListItem from "../BookListItem";
+import BookListItem from "../BookListItem";
 
 // We don't want to render the actual BookList component because we are not testing BookLisItem in the BookList test (1/2)
-jest.mock("../BookListItem", () => () => <div>bookListItem component</div>);
+jest.mock("../BookListItem", () => jest.fn());
 
 describe("BookList", () => {
   // Return mock 'booklist'(2/2)
-//  beforeAll(() => {
-//    BookListItem.mockImplementation(() => <div>bookListItem component</div>);
-//  });
+  //  beforeAll(() => {
+
+  //  });
 
   // Prepare the data for books (2 instances)
   const books = [
@@ -29,19 +29,19 @@ describe("BookList", () => {
   ];
 
   // Create the test
-  it("render BookList without error", async () => {
+  it("render BookList without error", () => {
+    BookListItem.mockImplementation(() => <div>bookListItem component</div>);
+
     render(<BookList books={books} />);
 
-    (() => {
-      // We have 2 instances of a book. For each of them we are going to call BookListItem
-      // We check if BookListItem is called twice
-      expect(jest.fn()).toHaveBeenCalledTimes(2);
+    // We have 2 instances of a book. For each of them we are going to call BookListItem
+    // We check if BookListItem is called twice
+    expect(BookListItem).toHaveBeenCalledTimes(2);
 
-      // Also assert that BookListItem was called with first Book
-      expect(jest.fn()).toHaveBeenCalledWith({ book: books[0] }, {});
+    // Also assert that BookListItem was called with first Book
+    expect(BookListItem).toHaveBeenCalledWith({ book: books[0] }, {});
 
-      // Also assert that BookListItem was called with second Book
-      expect(jest.fn()).toHaveBeenCalledWith({ book: books[1] }, {});
-    });
+    // Also assert that BookListItem was called with second Book
+    expect(BookListItem).toHaveBeenCalledWith({ book: books[1] }, {});
   });
 });
