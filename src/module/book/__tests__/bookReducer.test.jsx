@@ -28,7 +28,7 @@ describe("bookReducer test", () => {
       ],
 
       promise: {
-        isPending: true,
+        isPending: false,
         isFulfilled: false,
         isErrorOccured: false,
       },
