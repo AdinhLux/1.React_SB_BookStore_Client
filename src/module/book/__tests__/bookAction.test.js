@@ -56,7 +56,7 @@ describe("BookActions", () => {
     const actions = store.getActions();
     expect(actions.length).toEqual(3);
 
-    // actions[0] = BOOKLISTPENDING, actions[1] = BOOKLIST
+    // actions[0] = BOOKLISTPENDING, actions[1] = BOOKLIST, actions[2] = BOOKLISTFULFILLED
     expect(actions[1]).toEqual({
       type: "BOOKSBYTITLE",
       payload: [
@@ -67,6 +67,23 @@ describe("BookActions", () => {
           releaseYear: 2018,
         },
       ],
+    });
+  });
+
+  it("should able to dispatch error action", async () => {
+    // Creating the store with empty initialState
+    const store = mockStore({});
+    axios.get.mockImplementation(() => {
+      throw new Error();
+    });
+
+    await store.dispatch(getBooksByTitle("test title TOTO"));
+    const actions = store.getActions();
+
+    expect(actions.length).toEqual(2);
+    // actions[0] = BOOKLISTPENDING, actions[1] = BOOKLISTERROR in case of error
+    expect(actions[1]).toEqual({
+      type: "BOOKLISTERROR",
     });
   });
 });
