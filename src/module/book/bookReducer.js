@@ -32,6 +32,18 @@ const bookReducer = (state = INITIAL_BOOK_REDUCER_STATE, action) => {
       };
     }
 
+    case "BOOKSBYTITLE": {
+      /*
+       * We're returning a brand new object rather than trying to change state.
+       * We then use the spread operator to create a copy of the state.
+       * Then we override the books property with the new value from action.payload.
+       */
+      return {
+        ...state,
+        books: action.payload,
+      };
+    }
+
     case "BOOKLISTPENDING": {
       return {
         ...state,
