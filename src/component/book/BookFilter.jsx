@@ -20,6 +20,14 @@ const BookFilter = () => {
    */
   const dispatch = useDispatch();
 
+  const handleSearchChange = (event) => {
+    setSearchText(event.target.value);
+  };
+
+  const handleSearchClick = () => {
+    dispatch(getBooksByTitle(searchText));
+  };
+
   return (
     <Box className={classes.bookFilter}>
       <Paper className={classes.bookFilterPaper}>
@@ -32,17 +40,11 @@ const BookFilter = () => {
             label="Enter book title"
             variant="outlined"
             value={searchText}
-            onChange={(event) => setSearchText(event.target.value)}
+            onChange={handleSearchChange}
           />
         </Box>
 
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            dispatch(getBooksByTitle(searchText));
-          }}
-        >
+        <Button variant="contained" color="primary" onClick={handleSearchClick}>
           Search
         </Button>
       </Paper>
