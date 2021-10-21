@@ -16,13 +16,13 @@ const BookFilter = () => {
         <Typography>Search Books Filter</Typography>
         <Box>
           <TextField
-            placeholder="Enter Book title"
+            placeholder="Enter book title"
             id="book-search"
             data-testid="book-title-input"
             label="Enter book title"
             variant="outlined"
             value={searchText}
-            onClick={(event) => setSearchText(event.target.value)}
+            onChange={(event) => setSearchText(event.target.value)}
           />
         </Box>
 

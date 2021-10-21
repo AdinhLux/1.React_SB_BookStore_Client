@@ -62,7 +62,7 @@ exports[`App component should render app with error 1`] = `
                     aria-invalid="false"
                     class="MuiInputBase-input MuiOutlinedInput-input"
                     id="book-search"
-                    placeholder="Enter Book title"
+                    placeholder="Enter book title"
                     type="text"
                     value=""
                   />
