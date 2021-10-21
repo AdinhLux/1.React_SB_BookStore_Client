@@ -13,6 +13,9 @@ describe("BookFilter", () => {
   it("should fire getBooksByTitle action on search button click", () => {
     const { getByLabelText, getByText } = renderWithRedux(<BookFilter />, {});
 
+    // Mocking actions (we are not returning anything)
+    getBooksByTitle.mockImplementation(() => (dispatch) => {});
+
     const textField = getByLabelText("Enter book title");
 
     // Simulate TextField reading

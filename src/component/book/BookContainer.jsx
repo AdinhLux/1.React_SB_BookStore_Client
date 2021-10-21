@@ -12,7 +12,6 @@ import BookList from "./BookList";
 import { Skeleton } from "@material-ui/lab";
 
 const BookContainer = () => {
-  console.log("called");
   /**
    * React's Hook gives the ability to use local component state, execute side effects, and more.
    *
