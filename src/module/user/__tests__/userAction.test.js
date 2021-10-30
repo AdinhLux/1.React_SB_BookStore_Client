@@ -1,6 +1,7 @@
 import configureStore from "redux-mock-store";
 import reduxThunk from "redux-thunk";
 import axios from "axios";
+import { loginAction } from "../userAction";
 
 // Mocking Axios requests
 jest.mock("axios");
@@ -13,11 +14,9 @@ describe("Login Action", () => {
     // Mocking axios request (we are not going to issue requests to the server)
     axios.post.mockImplementation(() => {
       return Promise.resolve({
-        data: [
-          {
-            token: "jwt token",
-          },
-        ],
+        data: {
+          token: "jwt token",
+        },
       });
     });
   });
@@ -28,7 +27,6 @@ describe("Login Action", () => {
 
     await store.dispatch(loginAction("email", "password"));
     const actions = store.getActions();
-    expect(actions.length).toEqual(3);
 
     expect(actions.length).toEqual(1);
     expect(actions[0]).toEqual({
