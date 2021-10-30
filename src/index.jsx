@@ -5,7 +5,24 @@ import reduxThunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
 import App from "./component/App";
 import reducers from "./module";
+import axios from "axios";
 
+// Intercept HTTP request and append data
+axios.interceptors.request.use(
+  (config) => {
+    const token = window.localStorage.getItem("bookstore-token");
+
+    if (token != null) {
+      // Assing token to 'Authorization' HTTP header
+      config.headers.Authorization = token;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 /**
  * Redux is simply a store to store the state of the variables in your app.
  * Redux creates a process and procedures to interact with the store so that components will not just update or read the store randomly.
