@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Paper, TextField, Typography } from "@material-ui/core";
 import makeStyle from "./LoginStyle";
 import * as yup from "yup";
@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../module/user/userAction";
 import { getUserPromise } from "../../module/user/userSelector";
+import { useSnackbar } from "notistack";
 
 // Yup is a JavaScript schema builder for value parsing and validation
 const validationSchema = yup.object({
@@ -23,6 +24,21 @@ const Login = () => {
   const classes = makeStyle();
   const dispatch = useDispatch();
   const loginPromise = useSelector(getUserPromise);
+  const { enqueueSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    if (loginPromise.isErrorOccured) {
+      // Display error message
+      enqueueSnackbar("Username or password incorrect", {
+        variant: "error",
+      });
+    } else if (loginPromise.isFulfilled) {
+       // Display success message
+       enqueueSnackbar("Login success", {
+        variant: "success",
+      });
+    }
+  }, [loginPromise, enqueueSnackbar]);
 
   // Formik helps us to build forms in React
   const formik = useFormik({
