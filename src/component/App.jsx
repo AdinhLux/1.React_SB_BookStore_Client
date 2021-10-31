@@ -5,6 +5,7 @@ import Layout from "./layout/Layout";
 import BookContainer from "./book/BookContainer";
 import Login from "./user/Login";
 import { SnackbarProvider } from "notistack";
+import Auth from "./Auth";
 
 const App = () => {
   // This container pass the layout at children and it will going to render it here, below the Header
@@ -23,7 +24,9 @@ const App = () => {
              * Default Page
              */}
             <Route exact path="/">
-              <BookContainer />
+              <Auth>
+                <BookContainer />
+              </Auth>
             </Route>
           </Switch>
         </Layout>

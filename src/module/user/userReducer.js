@@ -1,6 +1,6 @@
 // "initialState (INITIAL_BOOK_REDUCER_STATE)"
 export const USER_INITIAL_STATE = {
-  token: "",
+  token: window.localStorage.getItem("bookstore-token"),
   promise: {
     isPending: false,
     isFulfilled: false,
