@@ -3,8 +3,9 @@ import { Box, Button, Paper, TextField, Typography } from "@material-ui/core";
 import makeStyle from "./LoginStyle";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../module/user/userAction";
+import { getUserPromise } from "../../module/user/userSelector";
 
 // Yup is a JavaScript schema builder for value parsing and validation
 const validationSchema = yup.object({
@@ -20,8 +21,8 @@ const validationSchema = yup.object({
 
 const Login = () => {
   const classes = makeStyle();
-
   const dispatch = useDispatch();
+  const loginPromise = useSelector(getUserPromise);
 
   // Formik helps us to build forms in React
   const formik = useFormik({
@@ -71,7 +72,8 @@ const Login = () => {
             className={classes.topMargin}
             type="submit"
             variant="contained"
-            color=" primary"
+            color="primary"
+            disabled={loginPromise.isPending}
           >
             Login
           </Button>
