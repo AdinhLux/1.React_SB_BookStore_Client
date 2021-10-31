@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import reduxThunk from "redux-thunk";
 import reducers from "../module";
+import { SnackbarProvider } from "notistack";
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
@@ -14,7 +15,11 @@ const renderWithRedux = (
 ) => ({
   // ... is used to spread objects
   // https://stackoverflow.com/questions/54963457/react-js-spread-syntax
-  ...render(<Provider store={store}>{ui}</Provider>),
+  ...render(
+    <Provider store={store}>
+      <SnackbarProvider maxSnack={3}>{ui}</SnackbarProvider>
+    </Provider>
+  ),
 });
 
 export default renderWithRedux;
