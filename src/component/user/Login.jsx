@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../module/user/userAction";
 import { getUserPromise } from "../../module/user/userSelector";
 import { useSnackbar } from "notistack";
+import { useHistory } from "react-router-dom";
 
 // Yup is a JavaScript schema builder for value parsing and validation
 const validationSchema = yup.object({
@@ -25,6 +26,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const loginPromise = useSelector(getUserPromise);
   const { enqueueSnackbar } = useSnackbar();
+  const history = useHistory();
 
   useEffect(() => {
     if (loginPromise.isErrorOccured) {
@@ -37,8 +39,11 @@ const Login = () => {
       enqueueSnackbar("Login success", {
         variant: "success",
       });
+
+      // Redirect to Home page
+      history.push("/");
     }
-  }, [loginPromise, enqueueSnackbar]);
+  }, [loginPromise, enqueueSnackbar, history]);
 
   // Formik helps us to build forms in React
   const formik = useFormik({
