@@ -1,10 +1,13 @@
 import { Box, Paper, Button, TextField, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerAction } from "../../module/user/userAction";
 import registerStyle from "./RegisterStyle";
+import { getUserRegisterPromise } from "../../module/user/userSelector";
+import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 // Yup is a JavaScript schema builder for value parsing and validation
 const validationSchema = yup.object({
@@ -22,6 +25,23 @@ const validationSchema = yup.object({
 const Register = () => {
   const classes = registerStyle();
   const dispatch = useDispatch();
+  const registerPromise = useSelector(getUserRegisterPromise);
+  const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    if (registerPromise.isErrorOcurred) {
+      enqueueSnackbar("Server error occured!", {
+        variant: "error",
+      });
+    } else if (registerPromise.isFulfilled) {
+      enqueueSnackbar("User Added Successfully!", {
+        variant: "success",
+      });
+      history.push("/login");
+      // dispatch action to set register promise values
+    }
+  }, [registerPromise, enqueueSnackbar, history]);
 
   // Formik helps us to build forms in React
   const registerForm = useFormik({
