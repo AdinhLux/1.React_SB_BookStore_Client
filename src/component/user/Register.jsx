@@ -2,8 +2,9 @@ import { Box, Paper, Button, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registerAction } from "../../module/user/userAction";
+import registerStyle from "./RegisterStyle";
 
 // Yup is a JavaScript schema builder for value parsing and validation
 const validationSchema = yup.object({
@@ -19,6 +20,7 @@ const validationSchema = yup.object({
 });
 
 const Register = () => {
+  const classes = registerStyle();
   const dispatch = useDispatch();
 
   // Formik helps us to build forms in React
@@ -35,11 +37,12 @@ const Register = () => {
   });
 
   return (
-    <Box>
-      <Typography>User Registration</Typography>
+    <Box className={classes.wrapper}>
+      <Typography className={classes.heading}>User Registration</Typography>
       <form autoComplete="off" noValidate onSubmit={registerForm.handleSubmit}>
-        <Paper>
+        <Paper className={classes.paper}>
           <TextField
+            className={classes.margin12}
             id="name"
             name="name"
             variant="outlined"
@@ -52,6 +55,7 @@ const Register = () => {
             }
           />
           <TextField
+            className={classes.margin12}
             id="email"
             name="email"
             variant="outlined"
@@ -64,6 +68,7 @@ const Register = () => {
             }
           />
           <TextField
+            className={classes.margin12}
             id="password"
             name="password"
             variant="outlined"
@@ -78,7 +83,12 @@ const Register = () => {
               Boolean(registerForm.errors.password)
             }
           />
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            className={classes.button}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
             Register
           </Button>
         </Paper>
