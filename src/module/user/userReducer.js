@@ -6,6 +6,11 @@ export const USER_INITIAL_STATE = {
     isFulfilled: false,
     isErrorOccured: false,
   },
+  registerPromise: {
+    isPending: false,
+    isFulfilled: false,
+    isErrorOccured: false,
+  },
 };
 
 /*
@@ -20,6 +25,8 @@ export const USER_INITIAL_STATE = {
 const userReducer = (state = USER_INITIAL_STATE, action) => {
   // Return new state when "USER_LOGIN" action dispatch
   switch (action.type) {
+    // Login
+    // =====
     case "USER_LOGIN": {
       return {
         ...state,
@@ -56,6 +63,59 @@ const userReducer = (state = USER_INITIAL_STATE, action) => {
           isPending: false,
           isFulfilled: false,
           isErrorOccured: true,
+        },
+      };
+    }
+
+    // Register
+    // ========
+    case "USER_REGISTRY": {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+
+    case "USER_REGISTRY_PENDING": {
+      return {
+        ...state,
+        registerPromise: {
+          isPending: true,
+          isFulfilled: false,
+          isErrorOcurred: false,
+        },
+      };
+    }
+
+    case "USER_REGISTRY_SUCCESS": {
+      return {
+        ...state,
+        registerPromise: {
+          isPending: false,
+          isFulfilled: true,
+          isErrorOcurred: false,
+        },
+      };
+    }
+
+    case "USER_REGISTRY_ERROR": {
+      return {
+        ...state,
+        registerPromise: {
+          isPending: false,
+          isFulfilled: false,
+          isErrorOcurred: true,
+        },
+      };
+    }
+
+    case "USER_REGISTRY_RESET": {
+      return {
+        ...state,
+        registerPromise: {
+          isPending: false,
+          isFulfilled: false,
+          isErrorOccured: false,
         },
       };
     }
