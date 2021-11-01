@@ -58,7 +58,7 @@ describe("Login Action", () => {
 
     expect(actions.length).toEqual(3);
     expect(actions[1]).toEqual({
-      type: "USER_REGISTER",
+      type: "USER_REGISTRY",
       payload: {
         id: "some UUID",
         name: "name",
