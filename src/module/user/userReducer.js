@@ -108,6 +108,18 @@ const userReducer = (state = USER_INITIAL_STATE, action) => {
         },
       };
     }
+
+    case "USER_REGISTRY_RESET": {
+      return {
+        ...state,
+        registerPromise: {
+          isPending: false,
+          isFulfilled: false,
+          isErrorOccured: false,
+        },
+      };
+    }
+
     default: {
       return state;
     }

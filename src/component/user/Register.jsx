@@ -39,7 +39,10 @@ const Register = () => {
         variant: "success",
       });
       history.push("/login");
-      // dispatch action to set register promise values
+
+      // dispatch action to reset register promise values (to not keep in memories the success value)
+      // see userAction.js
+      dispatch({ type: "USER_REGISTRY_RESET" });
     }
   }, [registerPromise, enqueueSnackbar, history]);
 
