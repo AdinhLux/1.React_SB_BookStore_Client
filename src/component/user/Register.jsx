@@ -6,8 +6,14 @@ import { useFormik } from "formik";
 // Yup is a JavaScript schema builder for value parsing and validation
 const validationSchema = yup.object({
   name: yup.string().required("Username is required"),
-  email: yup.string().required("Email is required"),
-  password: yup.string().required("Password is required"),
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("Enter a valid email"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password should be of minimunm 8 characters length"),
 });
 
 const Register = () => {
