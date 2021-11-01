@@ -2,6 +2,8 @@ import { Box, Paper, Button, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { registerAction } from "../../module/user/userAction";
 
 // Yup is a JavaScript schema builder for value parsing and validation
 const validationSchema = yup.object({
@@ -17,6 +19,8 @@ const validationSchema = yup.object({
 });
 
 const Register = () => {
+  const dispatch = useDispatch();
+
   // Formik helps us to build forms in React
   const registerForm = useFormik({
     validationSchema,
@@ -26,7 +30,7 @@ const Register = () => {
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      dispatch(registerAction(values));
     },
   });
 

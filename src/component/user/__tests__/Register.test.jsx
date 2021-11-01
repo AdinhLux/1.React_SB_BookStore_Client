@@ -1,7 +1,10 @@
 import React from "react";
 import renderWithRedux from "../../../util/testUtil";
 import Register from "../Register";
-import { fireEvent } from "@testing-library/dom";
+import { fireEvent, waitFor } from "@testing-library/dom";
+import { registerAction } from "../../../module/user/userAction";
+
+jest.mock("../../../module/user/userAction");
 
 describe("Register form", () => {
   // Just check if these elements are present in the Document web page
@@ -48,5 +51,31 @@ describe("Register form", () => {
     expect(
       await findByText("Password should be of minimunm 8 characters length")
     ).toBeInTheDocument();
+  });
+
+  it("should call register action with user data", async () => {
+    const { getByText, getByLabelText } = renderWithRedux(<Register />, {});
+    registerAction.mockImplementation(() => (dispatch) => {});
+
+    fireEvent.change(getByLabelText("Enter email address"), {
+      target: { value: "email@gmail.com" },
+    });
+    fireEvent.change(getByLabelText("Enter password"), {
+      target: { value: "password8" },
+    });
+    fireEvent.change(getByLabelText("Enter username"), {
+      target: { value: "username" },
+    });
+
+    // submit register form
+    fireEvent.submit(getByText("Register"));
+
+    await waitFor(() => {
+      expect(registerAction).toHaveBeenCalledWith({
+        name: "username",
+        email: "email@gmail.com",
+        password: "password8",
+      });
+    });
   });
 });
