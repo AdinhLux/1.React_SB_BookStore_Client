@@ -19,3 +19,9 @@ export const loginAction = (email, password) => async (dispatch) => {
     dispatch({ type: "USER_ERROR" });
   }
 };
+
+export const registerAction = (user) => (dispatch) => {
+  try {
+  } catch (error) {
+  }
+};
