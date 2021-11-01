@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should render app with error 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root MuiBox-root-1"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-2"
+    >
+      <header
+        class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary mui-fixed MuiPaper-elevation4"
+      >
+        <div
+          class="MuiToolbar-root MuiToolbar-dense MuiToolbar-gutters"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
+          >
+            Book Store
+          </h6>
+        </div>
+      </header>
+    </div>
+    (mt = margin top, ml = margin left)
+    <div
+      class="MuiBox-root MuiBox-root-3"
+    >
+      <form
+        autocomplete="off"
+        novalidate=""
+      >
+        <div
+          class="MuiBox-root MuiBox-root-21 makeStyles-wrapper-18"
+        >
+          <div
+            class="MuiPaper-root makeStyles-paper-19 MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <h4
+              class="MuiTypography-root MuiTypography-h4"
+            >
+              Book store Login
+            </h4>
+            <div
+              class="MuiFormControl-root MuiTextField-root makeStyles-topMargin-20"
+              data-testid="email-testid"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
+                data-shrink="false"
+                for="email"
+                id="email-label"
+              >
+                Enter email address
+              </label>
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input"
+                  id="email"
+                  name="email"
+                  placeholder="Enter email address"
+                  type="text"
+                  value=""
+                />
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legendLabelled-15"
+                  >
+                    <span>
+                      Enter email address
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root makeStyles-topMargin-20"
+              data-testid="password-testid"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
+                data-shrink="false"
+                for="password"
+                id="password-label"
+              >
+                Enter password
+              </label>
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input"
+                  id="password"
+                  name="password"
+                  placeholder="Enter password"
+                  type="text"
+                  value=""
+                />
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legendLabelled-15"
+                  >
+                    <span>
+                      Enter password
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-topMargin-20 MuiButton-containedPrimary"
+              tabindex="0"
+              type="submit"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Login
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;
