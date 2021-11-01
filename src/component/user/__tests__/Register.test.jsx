@@ -1,8 +1,7 @@
 import React from "react";
 import renderWithRedux from "../../../util/testUtil";
 import Register from "../Register";
-
-jest.mock("../../../module/user/userAction");
+import { fireEvent } from "@testing-library/dom";
 
 describe("Register form", () => {
   // Just check if these elements are present in the Document web page
@@ -13,5 +12,16 @@ describe("Register form", () => {
     expect(getByLabelText("Enter password")).toBeInTheDocument();
     expect(getByLabelText("Enter username")).toBeInTheDocument();
     expect(getByText("Register")).toBeInTheDocument();
+  });
+
+  it("should show required error message when register is clicked", async () => {
+    const { findByText, getByText } = renderWithRedux(<Register />, {});
+
+    // Submit Register form
+    fireEvent.submit(getByText("Register"));
+
+    expect(await findByText("Username is required")).toBeInTheDocument();
+    expect(await findByText("Email is required")).toBeInTheDocument();
+    expect(await findByText("Password is required")).toBeInTheDocument();
   });
 });
